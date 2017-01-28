@@ -1,0 +1,94 @@
+.user-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    width:100%;
+}
+
+.user-info p{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+}
+
+
+.user-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+    text-align: center;
+}
+
+#user-description {
+    max-width: 60%;
+}
+
+.recent-popular-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+md-card md-card img {
+    max-width:50%;
+}
+
+.user-container md-card {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+#user-photos-link {
+    color: black;
+    text-decoration: none;
+}
+
+.mention-text {
+    text-align: center;
+    font-size: 30px;
+}
+
+.mention-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width:50%;
+}
+
+.photo-mentions {
+    box-shadow: 1px 1px 3px #888888;
+    padding: 0px 3px 10px 3px;
+}
+
+.photo-mentions img {
+    margin: 20px 0px 20px 0px;
+    align-self: center;
+}
+
+.danger-zone-user {
+    margin-top: 40px;
+    border-top: 1px solid red;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 30px;
+    font-weight: bold;
+    align-content: center;
+    align-items: center;
+}
+
+.delete-account-button {
+    background-color: red !important;
+}

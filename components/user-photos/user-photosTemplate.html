@@ -1,0 +1,49 @@
+<div ng-show="noPhotos" class="no-photos">
+    <h2>The user has no photos uploaded to the site. You can check back later though</h2>
+</div>
+
+<div class="user-photos" ng-repeat="photo in userPhotos">
+    <md-card class="image-container">
+        <h2>Photo created on {{photo.date_time}}</h2>
+        <img ng-src="images/{{photo.file_name}}"/>
+        
+        <div class="image-icons-container">
+            <div><i ng-show="photo.user_id === main.curUser.id" class="material-icons" ng-click="deleteCommentPhoto(photo, null)">delete</i></div>
+            <div>
+            <i ng-hide="photo.favorite" class="material-icons favorite-icon" ng-click="favoriteToggle(photo)">favorite_border</i>
+            <i ng-show="photo.favorite" class="material-icons favorited-icon">favorite</i>
+            </div>
+        </div>
+        
+        <md-card-content>
+            <h4>Comments: </h4>
+            <div ng-repeat="comment in photo.comments">
+                <div>
+                    <span>Comment created at: {{comment.date_time}}</span>
+                    <span><a ng-href="#/users/{{comment.user._id}}">{{comment.user.first_name}}</a></span>
+                </div>
+                <div class="comment-section">
+                    <br>
+                    <span><i ng-show="comment.user._id === main.curUser.id" class="material-icons" ng-click="deleteCommentPhoto(photo, comment)">delete</i></span>
+                    <span>{{comment.comment}}</span>
+                </div>
+                <br>
+            </div>
+        </md-card-content>
+        <div class="commenter-container" layout="column" layout-padding ng-cloak>
+          <md-content class="autoScroll">
+              <form method="post" name="userForm" ng-submit="addComment(photo._id, photo)">
+                <label class="login-label">Add a new comment here:</label>
+                <div class="comment-form-container">
+                    <md-input-container md-no-float class="md-block">
+                      <input type="text" mentio placeholder="Add comment here" ng-model="photo.newComment" ng-trim="false" mentio-typed-text="typedTerm()" mentio-items="people | filter:label:typedTerm" mentio-require-leading-space="true" mentio-select="addMentions(item, photo, people)" mentio-template-url="/people-mentions.tpl">
+                    </md-input-container>
+                    <md-button type="submit" class="md-raised md-primary md-hue-1">Comment</md-button>
+                </div>
+              </form>
+          </md-content>
+        </div>
+    </md-card>
+</div>
+
+

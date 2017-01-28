@@ -1,0 +1,65 @@
+<div class="login-form-container" layout="column" layout-padding ng-cloak>
+  <md-content class="autoScroll" ng-show="registerToggle">
+      <form method="post" ng-submit="submit()">
+        <label class="login-label">{{loginMessage}}</label>
+        <div>
+            <md-input-container md-no-float class="md-block" md-is-error="invalidLogin">
+              <label for="loginName">{{userName}}</label>
+              <input ng-model="loginName" type="text" id="loginName" autofocus required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block" md-is-error="invalidLogin">
+              <label for="loginPassword">Password</label>
+              <input ng-model="password" type="password" id="loginPassword" required>
+            </md-input-container>
+        </div>
+        <div class="buttons-container">
+            <md-button type="submit" class="md-raised md-primary">Login</md-button>
+            <md-button class="md-raised md-primary md-hue-3" ng-click="registerToggle = false">Register</md-button>
+        </div>
+      </form>
+  </md-content>
+  <md-content class="autoScroll" ng-hide="registerToggle">
+      <form method="post" ng-submit="registerNewUser()">
+        <label class="login-label">{{newUserMsg}}</label>
+        <div>
+            <md-input-container md-no-float class="md-block" md-is-error="userExists">
+              <label for="newLoginName">User Name</label>
+              <input ng-model="newUser.login_name" type="text" id="newLoginName" required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newPassword">Password</label>
+              <input ng-model="newUser.password" type="password" id="newPassword" required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newPasswordRepeat">Retype Password</label>
+              <input ng-model="passwordCopy" type="password" id="newPasswordRepeat" required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label for="newFirstName">First Name</label>
+              <input ng-model="newUser.first_name" type="text" id="newFirstName" required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newLastName">Last Name</label>
+              <input ng-model="newUser.last_name" type="text" id="newLastName" required>
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newLocation">Location</label>
+              <input ng-model="newUser.location" type="text" id="newLocation">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newDescription">Describe yourself</label>
+              <input ng-model="newUser.description" type="text" id="newDescription">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+              <label for="newOccupation">Occupation</label>
+              <input ng-model="newUser.occupation" type="text" id="newOccupation">
+            </md-input-container>
+        </div>
+        <div class="buttons-container">
+            <md-button type="submit" class="md-raised md-primary">Register Me</md-button>
+            <md-button class="md-raised md-warn" ng-click="cleanRegister()">Cancel</md-button>
+        </div>
+      </form>
+  </md-content>
+  
+</div>

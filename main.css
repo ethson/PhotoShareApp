@@ -1,0 +1,97 @@
+/*
+CSS for the CS142 project #5 main page
+
+Since CSS uses a global name space for classes we should use class names starting with
+cs142-main- here.
+*/
+
+.cs142-main-toolbar-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size:20px;
+}
+
+.container {
+    width:100;
+    margin-left: -20px;
+}
+
+.add-file-class {
+    font-size: 15px;
+    display: inline-block;
+}
+
+.user-search {
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    background-clip: padding-box;
+    outline: 0;
+}
+
+.user-search {
+    background-color: #f5f5f5;
+}
+
+.user-search:hover {
+    cursor: pointer;
+}
+
+.user-search .list-group-item.active {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+.user-search .list-group-item.active {
+    color: #ccc;
+}
+
+.user-search .list-group-item.active .text-primary {
+    color: #fff;
+}
+
+.user-search .list-group-item {
+    padding: 5px;
+}
+
+.user-search .user-photo {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 15px;
+}
+
+.logged-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end
+}
+
+.logout-button {
+    min-height: 30px !important;
+    min-width: 50px !important;
+    font-size: 15px !important;
+    line-height: 0px; 
+}
+
+.useful-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+.dialogdemoBasicUsage button {
+  width: 200px; }
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }

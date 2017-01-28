@@ -1,0 +1,24 @@
+.user-comments {
+    height: 200px;
+    text-decoration: none;
+}
+
+.user-comments a {
+    text-decoration: none;
+    color: black;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.comment-container img{
+    width: 40%;
+    max-height: 100px;
+}

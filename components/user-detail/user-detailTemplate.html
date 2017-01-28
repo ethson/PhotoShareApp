@@ -1,0 +1,44 @@
+<div class="user-info">
+    <md-card class="user-container">    
+        <h1>{{userDisplayed.first_name}} {{userDisplayed.last_name}}</h1>
+        <p>Occupation: {{userDisplayed.occupation}} | Location: {{userDisplayed.location}}</p>
+        <p id="user-description">{{userDisplayed.description}}</p>
+        <a id="user-photos-link" ng-href="#/photos/{{userDisplayed._id}}">
+            <p class="mention-text">Most recent and most popular photos from {{userDisplayed.first_name}}</p>
+            <div class="recent-popular-photo" ng-show="userHasPhotos">
+                <span>
+                <md-card class="recent-photo-detail">
+                    <img ng-src="images/{{userDisplayed.mostRecentPhoto.file_name}}"/>
+                    <p>Photo made at {{userDisplayed.mostRecentPhoto.date_time}}</p>
+                </md-card>
+                 </span>   
+                <span>
+                <md-card class="popular-photo-detail">
+                    <img ng-src="images/{{userDisplayed.mostPopularPhoto.file_name}}"/>
+                    <p>This photo has {{userDisplayed.mostPopularPhoto.comments.length}} comments</p>
+                </md-card>
+                </span>
+            </div>   
+        </a>
+        <div ng-show="userDisplayed.photoMentions.length === 0">
+            <p class="mention-text">{{userDisplayed.first_name}} has no mentions at the time</p>
+        </div>
+        <div class="mention-container" ng-show="userDisplayed.photoMentions.length !== 0">
+            <div>
+                <p class="mention-text">{{userDisplayed.first_name}} is mentioned in all these photos!</p>
+            </div>
+            <div class ="photo-mentions" ng-repeat="mention in userDisplayed.photoMentions">
+                <a ng-href="#/photos/{{mention.user_id}}">
+                <img ng-src="images/{{mention.file_name}}"/>
+                </a>
+            </div>
+        </div>
+        <br>
+        <a ng-href="#/photos/{{userDisplayed._id}}">Click here to see photos</a>
+    </md-card>
+</div>
+
+<div ng-if="sameAsUserLogged" class="danger-zone-user">
+    Danger zone ahead!!
+    <md-button ng-click="showConfirm($event)" class="md-raised md-warn md-hue-2 delete-account-button">Delete Account</md-button>
+</div>

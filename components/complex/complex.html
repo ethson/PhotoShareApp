@@ -1,0 +1,40 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Upload Photo</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">cancel</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </form>
+  <md-switch ng-model="usingSharingList" aria-label="Switch" ng-change="useSharingList()">
+      Restrict to a sharing list?
+  </md-switch>
+  <div ng-show="usingSharingList">
+      <fieldset class="demo-fieldset" >
+          <!--legend class="demo-legend">Using &lt;md-checkbox&gt; with the 'indeterminate' attribute </legend-->
+          <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+            <md-checkbox aria-label="Select All"
+                         ng-checked="isChecked()"
+                         md-indeterminate="isIndeterminate()"
+                         ng-click="toggleAll()">
+              <span ng-if="isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+            <div class="demo-select-all-checkboxes" flex="50" ng-repeat="item in items">
+              <md-checkbox ng-disabled="isCurUser(item)" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+               {{ item }}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>  
+  </div>
+  <form ng-submit="uploadPhoto()">
+      <input type="file" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)">
+      <md-button type="submit" class="md-raised md-accent md-hue-3">Add new Photo</md-button>
+  </form>
+</md-dialog>

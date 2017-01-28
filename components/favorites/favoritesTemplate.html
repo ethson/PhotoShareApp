@@ -1,0 +1,18 @@
+<div class="favorite-container">
+    <div ng-hide="hasFavorites">
+        <h3>You've got no favorites yet, check back later</h3>
+    </div>
+
+    <div ng-show="hasFavorites">
+        <h1>This is your favorites list!</h1>
+        <h4>You can click on the X's to remove favorites or just see your photos</h4>
+        <ul class="gallery gallery1" ng-controller="FavoritesController">
+          <li ng-repeat="image in images">
+            <a ng-click="openLightboxModal($index)">
+              <img ng-show="image.favorited" ng-src="{{image.thumbUrl}}" class="img-thumbnail">
+            </a>
+            <i ng-show="image.favorited" class="material-icons favorite-cancel" ng-click="unfavorite(image)">cancel</i>
+          </li>
+        </ul>
+    </div>
+</div>   

@@ -1,0 +1,10 @@
+<div class="user-comments" ng-repeat="comment in commentsAndPhotos">
+    <div ng-repeat="comment2 in comment">
+        <a ng-href="#/photos/{{comment2.photo.user_id}}">
+            <md-card class="comment-container">
+                <span>{{comment2.comment.comment}}</span>
+                <span><img ng-src="images/{{comment2.photo.file_name}}"/></span>
+            </md-card>
+        </a>
+    </div>
+</div>

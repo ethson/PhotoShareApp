@@ -1,0 +1,23 @@
+.favorite-container {
+    text-align: center;
+}
+
+ul li{
+    display: inline-flex;
+    align-content: flex-start;
+}
+
+ul li img {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.favorite-cancel {
+    margin-left: -8px;
+    color:red;
+}
+
+.favorite-cancel:hover {
+    cursor: pointer;
+    transform: scale(1.1) translateY(3px);
+}
