@@ -7,8 +7,9 @@ var cs142App = angular.module('cs142App', ['mentio', 'ngRoute', 'ngMaterial', 'n
             .accentPalette('deep-orange');
     });
 
-cs142App.config(['$routeProvider', 'LightboxProvider',
-    function ($routeProvider, LightboxProvider) {
+cs142App.config(['$routeProvider', '$locationProvider', 'LightboxProvider',
+    function ($routeProvider, $locationProvider, LightboxProvider) {
+        $locationProvider.hashPrefix('');
         $routeProvider.
             when('/users', {
                 templateUrl: 'components/user-list/user-listTemplate.html',
@@ -54,11 +55,11 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.toggle = function (val) {
             $scope.main.message = val ? 'on' : 'off';
         };
-        
+
         $scope.main.checkLogin = function () {
             var userStatusRes = $resource('/user/status');
             console.log("I am checking the login now");
-            
+
             userStatusRes.save(function(status) {
                 if(status.data){
                     console.log("This is more trouble than its worth");
@@ -75,16 +76,16 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                 return false;
             });
         };
-        
+
         //$scope.main.loggedUser;
         //$scope.main.checkUserName = "Please login";
-        
+
         //$scope.main.loggedIn = false;
-        
+
         $scope.main.logout = function () {
             var logoutRes = $resource("/admin/logout");
             //var body = {};
-            //if($scope.main.loggedUser === undefined) { 
+            //if($scope.main.loggedUser === undefined) {
             //    body.logUser = 'Non-empty body';
             //}
             logoutRes.save({}, function (user) {
@@ -95,8 +96,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                 console.log("No one is logged in, so can't log out");
             });
         };
-        
-        
+
+
         $scope.$on('OpenSesame', function () {
             //console.log("WTFFFFF is going on");
             $scope.main.loggedIn = true;
@@ -104,14 +105,14 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             //$scope.main.checkLogin();
             $location.path("/users/" + $scope.main.loggedUser._id);
         });
-        
+
         $scope.$on('CloseSesame', function () {
             $scope.main.loggedIn = false;
             $scope.main.loggedUser = undefined;
             $scope.main.checkUserName = "Please login";
             $location.path("/login-register");
         });
-        
+
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
                 var userStatusRes = $resource('/user/status');
 
@@ -123,7 +124,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                         $scope.main.loggedIn = false;
                         //return false;
                     }
-                    
+
                     if(!$scope.main.loggedIn){
                         $scope.main.checkUserName = "Please Login";
                  // no logged user, redirect to /login-register unless already there
@@ -144,12 +145,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                         $location.path("/login-register");
                     }
                 });
-                
-               
+
+
             //}
         });
-        
-        
+
+
        //This include the copied code from the hints in class
        var selectedPhotoFile;   // Holds the last file selected by the user
 
@@ -182,7 +183,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             }).success(function(newPhoto){
                 // The photo was successfully uploaded. XXX - Do whatever you want on success.
                 var path = $location.path();
-                
+
                 if(path === ('/photos/'+newPhoto.user_id)) {
                     $route.reload();
                 } else {
@@ -190,16 +191,16 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                 }
                 //$scope.main.loggedIn = !$scope.main.loggedIn;
                 //$scope.main.loggedIn = !$scope.main.loggedIn;
-                
+
                 //$scope.main.advancedFeatures = !$scope.main.advancedFeatures;
             }).error(function(err){
                 // Couldn't upload the photo. XXX  - Do whatever you want on failure.
                 console.error('ERROR uploading photo', err);
             });
 
-        }; 
+        };
 
-        
+
           $scope.main.showAdvanced = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
             $mdDialog.show({
@@ -221,7 +222,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
               $scope.customFullscreen = (wantsFullScreen === true);
             });
           };
-        
+
         var testRes = $resource("/test/info");
         testRes.get(function (user) {
             $scope.version = user;

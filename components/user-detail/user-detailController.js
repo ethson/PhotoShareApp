@@ -7,10 +7,10 @@ cs142App.controller('UserDetailController', ['$scope', '$routeParams', '$resourc
      * $routeParams  should have the userId property set with the path from the URL.
      */
     var userId = $routeParams.userId;
-      
+
     $resource('/user/' + userId).get(function(user) {
-       $scope.userDisplayed = user; 
-        
+       $scope.userDisplayed = user;
+
        $scope.sameAsUserLogged = $scope.main.curUser.id === user._id;
        $scope.main.status = $scope.userDisplayed.first_name + "'s page";
        //$scope.main.curUser = $scope.userDisplayed.first_name;
@@ -21,12 +21,12 @@ cs142App.controller('UserDetailController', ['$scope', '$routeParams', '$resourc
            $scope.userHasPhotos = false;
        }
     });
-      
+
     var commentPhotoFetch = $resource("/comments/" + userId);
     commentPhotoFetch.get(function (comPhotos) {
         $scope.commentsAndPhotos = comPhotos;
     });
-      
+
       $scope.showConfirm = function(ev) {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.confirm()
@@ -49,6 +49,6 @@ cs142App.controller('UserDetailController', ['$scope', '$routeParams', '$resourc
             });
         });
       };
-      
-      
+
+
   }]);
